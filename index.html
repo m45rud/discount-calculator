@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="id">
   <head>
     <meta charset="utf-8">
-    <title>Discount Calculator</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+    <title>Kalkulator diskon</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="robots" content="noindex, nofollow">
     <link rel="icon" href="favicon.png">
     <style>
@@ -14,38 +14,53 @@
       }
       body {
         align-items: center;
-        background: #171717;
+        background: #202020;
         display: flex;
-        height: 90vh;
+        height: 100vh;
         justify-content: center;
         margin: 0;
       }
+      .box {
+        background: #171717;
+        border-radius: 1.75rem;
+        box-shadow: 0 5px 10px -1px rgba(0, 0, 0, .4),0 2px 3px -2px rgba(0, 0, 0, .5);
+        margin: .5rem;
+        max-width: 13rem;
+        padding: 2rem;
+      }
       label {
         display: block;
-        font-size: .875rem;
-        margin-bottom: .25rem;
+        font-size: .9375rem;
+        margin-bottom: .3125rem;
       }
-      input, button {
+      label,
+      input,
+      button {
+        font-family: inherit;
+      }
+      input,
+      button {
         align-items: center;
         border: 0;
-        border-radius: .375rem;
+        border-radius: .5rem;
         box-sizing: border-box;
         color: #eee;
         display: flex;
-        font-size: 1.125rem;
-        height: 2.25rem;
-        margin-bottom: .75rem;
+        font-size: 1.25rem;
+        height: 2.375rem;
         outline: 0;
         width: 100%;
       }
       input {
-        background: #222;
+        background: #242424;
+        margin-bottom: 1rem;
         padding: 0 .625rem;
       }
       input:read-only:focus {
         box-shadow: none;
       }
-      input:focus, button:focus {
+      input:focus,
+      button:focus {
         box-shadow: 0 0 0 .125rem rgba(198, 164, 246, .75);
       }
       button {
@@ -55,41 +70,46 @@
       button:hover {
         background: #6d0cf7;
       }
-      .box {
-        max-width: 10rem;
-      }
     </style>
   </head>
   <body>
     <div class="box">
-      <label for="discount">Discount %</label>
-      <input type="number" id="discount" autofocus>
-      <label for="price">Original price</label>
-      <input type="number" id="price">
-      <label for="discounted">Discount price</label>
-      <input type="text" id="discounted" tabindex="-1" readonly>
-      <button id="copy" onclick="copy()">Copy</button>
+      <div>
+        <label for="discount">Persentase diskon (%)</label>
+        <input type="number" id="discount" autofocus />
+      </div>
+      <div>
+        <label for="price">Harga asli</label>
+        <input type="number" id="price" />
+      </div>
+      <div>
+        <label for="discounted">Harga diskon</label>
+        <input type="text" id="discounted" tabindex="-1" readonly />
+      </div>
+      <div>
+        <button id="copy" onclick="copy()">Salin</button>
+      </div>
     </div>
   </body>
   <script>
-    const discount = document.querySelector('#discount');
-    const price = document.querySelector('#price');
-    const discounted = document.querySelector('#discounted');
+    const discount = document.querySelector("#discount");
+    const price = document.querySelector("#price");
+    const discounted = document.querySelector("#discounted");
 
-    discount.addEventListener('input', calc);
-    price.addEventListener('input', calc);
+    discount.addEventListener("input", calc);
+    price.addEventListener("input", calc);
 
     function calc() {
       const dc = discount.value;
-      const pr = price.value.replace(/[^0-9]+/g, '');
-      const dp = pr - (dc / 100 * pr);
-      return discounted.value = dp;
+      const pr = price.value.replace(/[^0-9]+/g, "");
+      const dp = pr - (dc / 100) * pr;
+      return (discounted.value = dp);
     }
 
     function copy() {
       discounted.select();
       discounted.setSelectionRange(0, 99999);
-      document.execCommand('copy');
+      document.execCommand("copy");
     }
   </script>
 </html>

@@ -1,1 +1,1 @@
-# Discount Calculator
+# Kalkulator diskon
